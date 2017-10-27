@@ -2,3 +2,12 @@
   display: flex;
   flex-direction: column;
 }
+
+#container label {
+  font-size: 1.4rem;
+}
+
+#container input {
+  font-size: 1.4rem;
+  width: 200px;
+}
