@@ -11,3 +11,22 @@
   font-size: 1.4rem;
   width: 200px;
 }
+
+#container button {
+  width: 100px;
+}
+
+#container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-of-type(odd) {
+  background-color: #eee;
+}
+
+td {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+}

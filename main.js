@@ -25,6 +25,7 @@ class KnapsackItemInput extends HTMLElement {
 customElements.define('knapsack-item-input', KnapsackItemInput);
 
 const container = document.getElementById('container');
+const resultTableBody = document.getElementById('result-table-body');
 const addItemButton = document.getElementById('add');
 const removeItemButton = document.getElementById('remove');
 const calculateButton = document.getElementById('calculate');
@@ -54,6 +55,10 @@ function addItem() {
 }
 
 function calculate() {
+  while (resultTableBody.firstChild) {
+    resultTableBody.removeChild(resultTableBody.firstChild);
+  }
+
   const objects = [];
   for(let i = 0; i < itemsCount; i++) {
     const knapsackItemInput = document.getElementById(`item${i}`);
@@ -88,4 +93,14 @@ function calculate() {
   }
 
   console.log(m);
+  for (let i = 0; i < m.length; i++) {
+    const newTableRow = document.createElement('tr');
+    for (let j = 0; j < m[i].length; j++) {
+      const newTableData = document.createElement('td');
+      newTableData.innerHTML = m[i][j];
+      newTableRow.appendChild(newTableData);
+    }
+    resultTableBody.appendChild(newTableRow);
+  }
+  container.appendChild(resultTableBody);
 }

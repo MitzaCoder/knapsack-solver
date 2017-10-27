@@ -9,10 +9,10 @@
     <div id="container">
       <label>Max weight</label>
       <input id="maxWeight" type="number">
+      <button id="add">Add Item</button>
+      <button id="remove">Remove Item</button>
+      <button id="calculate">Calculate</button>
     </div>
-    <button id="add">Add Item</button>
-    <button id="remove">Remove Item</button>
-    <button id="calculate">Calculate</button>
 
     <template id="knapsack-item-input-template">
       <style>
@@ -29,6 +29,12 @@
       <label>Weight</label>
       <input id="weight" type="number">
     </template>
+
+    <!-- <template id="solved-table"> -->
+      <table>
+        <tbody id="result-table-body"></tbody>
+      </table>
+    <!-- </template> -->
 
     <script type="text/javascript" src="./main.js"></script>
   </body>
