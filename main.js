@@ -7,19 +7,11 @@ class KnapsackItemInput extends HTMLElement {
     super();
     const shadow = this.attachShadow({ mode: 'open' });
 
-    const valueLabel = document.createElement('label');
-    const weightLabel = document.createElement('label');
-    this.valueInput = document.createElement('input');
-    this.weightInput = document.createElement('input');
-    valueLabel.innerHTML = `Value item ${itemsCount}: `;
-    this.valueInput.setAttribute('type', 'number');
-    weightLabel.innerHTML = `Weight item ${itemsCount}: `;
-    this.weightInput.setAttribute('type', 'number');
-    
-    shadow.appendChild(valueLabel);
-    shadow.appendChild(this.valueInput);
-    shadow.appendChild(weightLabel);
-    shadow.appendChild(this.weightInput);
+    const knapsackItemInputTemplate = document.getElementById('knapsack-item-input-template');
+    shadow.appendChild(knapsackItemInputTemplate.content.cloneNode(true));
+
+    this.valueInput = shadow.getElementById('value');
+    this.weightInput = shadow.getElementById('weight');
   }
 
   get data() {
