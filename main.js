@@ -1,11 +1,41 @@
 'use strict';
 
+let itemsCount = 0;
+
+class KnapsackItemInput extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+
+    const valueLabel = document.createElement('label');
+    const weightLabel = document.createElement('label');
+    this.valueInput = document.createElement('input');
+    this.weightInput = document.createElement('input');
+    valueLabel.innerHTML = `Value item ${itemsCount}: `;
+    this.valueInput.setAttribute('type', 'number');
+    weightLabel.innerHTML = `Weight item ${itemsCount}: `;
+    this.weightInput.setAttribute('type', 'number');
+    
+    shadow.appendChild(valueLabel);
+    shadow.appendChild(this.valueInput);
+    shadow.appendChild(weightLabel);
+    shadow.appendChild(this.weightInput);
+  }
+
+  get data() {
+    return {
+      value: parseInt(this.valueInput.value, 10),
+      weight: parseInt(this.weightInput.value, 10),
+    };
+  }
+}
+
+customElements.define('knapsack-item-input', KnapsackItemInput);
+
 const container = document.getElementById('container');
 const addItemButton = document.getElementById('add');
 const removeItemButton = document.getElementById('remove');
 const calculateButton = document.getElementById('calculate');
-
-let itemCount = 0;
 
 addItemButton.addEventListener('click', () => {
   addItem();
@@ -21,41 +51,21 @@ calculateButton.addEventListener('click', () => {
 
 function removeItem() {
   container.removeChild(container.lastChild);
-  itemCount = itemCount - 1;
+  itemsCount = itemsCount - 1;
 }
 
 function addItem() {
-  const itemElement = document.createElement('div');
-  const valueLabel = document.createElement('label');
-  const weightLabel = document.createElement('label');
-  const valueInput = document.createElement('input');
-  const weightInput = document.createElement('input');  
-  valueLabel.innerHTML = `Value item ${itemCount}: `;
-  valueInput.setAttribute('id', `value${itemCount}`);
-  valueInput.setAttribute('type', 'number');
-  weightLabel.innerHTML = `Weight item ${itemCount}: `;
-  weightInput.setAttribute('id', `weight${itemCount}`);
-  weightInput.setAttribute('type', 'number');
-  
-  itemElement.appendChild(valueLabel);
-  itemElement.appendChild(valueInput);
-  itemElement.appendChild(weightLabel);
-  itemElement.appendChild(weightInput);
-
-  container.appendChild(itemElement);
-
-  itemCount = itemCount + 1;
+  const knapsackItemInput = document.createElement('knapsack-item-input');
+  knapsackItemInput.setAttribute('id', `item${itemsCount}`);
+  container.appendChild(knapsackItemInput);
+  itemsCount = itemsCount + 1;
 }
 
 function calculate() {
   const objects = [];
-  for(let i = 0; i < itemCount; i++) {
-    const valueInput = document.getElementById(`value${i}`);
-    const weightInput = document.getElementById(`weight${i}`);
-    objects.push({
-      value: parseInt(valueInput.value),
-      weight: parseInt(weightInput.value),
-    });
+  for(let i = 0; i < itemsCount; i++) {
+    const knapsackItemInput = document.getElementById(`item${i}`);
+    objects.push(knapsackItemInput.data);
   }
 
   const maxWeightInput = document.getElementById('maxWeight');
