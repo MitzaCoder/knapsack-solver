@@ -7,27 +7,45 @@
   </head>
   <body>
     <div id="container">
-      <label>Max weight</label>
-      <input id="maxWeight" type="number">
-      <button id="add">Add Item</button>
-      <button id="remove">Remove Item</button>
-      <button id="calculate">Calculate</button>
+      <div id="controls">
+        <label>Max weight</label>
+        <input id="maxWeight" type="number">
+        <div>
+          <button id="add">Add Item</button>
+          <button id="remove">Remove Item</button>
+          <button id="calculate">Calculate</button>
+        </div>
+      </div>
+      <div id="items"></div>
+      <div id="result"></div>
     </div>
 
     <template id="knapsack-item-input-template">
       <style>
         label {
           color: brown;
-          font-size: 1.4rem;
+          font-size: 1rem;
         }
         input {
-          font-size: 1.4rem;
+          margin-left: 10px;
+          font-size: 1rem;
+          width: auto;
+        }
+        .container {
+          display: grid;
+          grid-template-columns: 2fr 8fr;
+          grid-gap: 10px 0px;
+          border: 2px solid #AD2D2D;
+          padding: 10px;
+          border-radius: 4px;
         }
       </style>
-      <label>Value</label>
-      <input id="value" type="number">
-      <label>Weight</label>
-      <input id="weight" type="number">
+      <div class="container">
+        <label>Value</label>
+        <input id="value" type="number">
+        <label>Weight</label>
+        <input id="weight" type="number">
+      </div>
     </template>
 
     <!-- <template id="solved-table"> -->

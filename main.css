@@ -1,6 +1,6 @@
 #container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 #container label {
@@ -14,6 +14,20 @@
 
 #container button {
   width: 100px;
+  height: 30px;
+  background-color: #AD2D2D;
+  border: none;
+  margin: 10px;
+  font-size: 0.8rem;
+  color: white
+}
+
+#container #items {
+  display: grid;
+  --rowNum: 3;
+  --colNum: 3;
+  grid-template-rows: repeat(var(--rowNum), 1fr);
+  grid-template-columns: repeat(var(--colNum), 1fr);
 }
 
 #container table {
