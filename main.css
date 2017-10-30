@@ -28,6 +28,7 @@
   --colNum: 3;
   grid-template-rows: repeat(var(--rowNum), 1fr);
   grid-template-columns: repeat(var(--colNum), 1fr);
+  grid-gap: 10px;
 }
 
 #container table {
